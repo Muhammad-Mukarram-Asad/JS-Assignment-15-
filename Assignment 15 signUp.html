@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+
+    <style>
+        *
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1
+        {
+            color: black;
+            text-decoration: underline;
+            margin: 10px;
+        }
+        .signUpContainer
+        {
+            width: 500px;
+            height: 500px;
+            border: 3px solid;
+            border-top-color: lightgrey;
+            border-right-color:  lightblue;
+            border-bottom-color: grey;
+            border-left-color: rgb(31, 31, 34);
+            border-radius: 10px;
+        }
+        form
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        label
+        {
+            color: black;
+            font-size: 25px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        input
+        {
+            width: 300px;
+            height: 40px;
+            border: 2px solid black;
+            color: black;
+            text-indent: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        #button_signUp
+        {
+            width: 200px;
+            height: 40px;
+            border: 2px solid yellowgreen;
+            color: orangered;
+            font-size: 25px;
+            background-color: white;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registeration Form</h1>
+    <div class="signUpContainer">
+        <form>
+            <label for="name">Full Name:</label> 
+            <input type="text"  id="name" placeholder="Enter your Full Name"> 
+
+            <label for="profile_url">Profile Picture Link: </label> 
+            <input type="text" id="profile_url" placeholder="Enter your profile picture(URL)"> 
+
+            <label for="email_id">Email: </label> 
+            <input type="email" id="email_id" placeholder="Enter your email address"> 
+
+            <label for="password_id">Password: </label> 
+            <input type="password" id="password_id" placeholder="Enter your password"> <br> <br>
+            
+            <button id="button_signUp">Sign Up</button>
+
+        </form>
+
+    </div>
+
+    <script defer>
+        var name_input = document.getElementById('name').value;
+        var profile_input = document.getElementById('profile_url').value;
+        var email_input = document.getElementById('email_id').value;
+        var password_input = document.getElementById('password_id').value;
+
+        var button = document.getElementById('button_signUp');
+
+        var Users = [];
+
+        console.log(name_input);
+        console.log(profile_input);
+        console.log(email_input);
+        console.log(password_input);
+
+        // creting an object and store the above values into it.
+
+        button.addEventListener('click', function()
+        {
+            Users.push(
+                {
+                    name : name_input,
+                    profile : profile_input,
+                    email : email_input,
+                    password : password_input
+                }
+            )
+
+            console.log(Users);
+           
+        })
+
+        // console.log(User_Credentials);
+
+        // var user1 = new User_Credentials(name_input,profile_input, email_input,password_input);
+        
+        // var u1 = new User_Credentials("Mukii","https","asd@gmail.com","123456");
+        // console.log(u1);
+
+
+        // Part: 03 Add a Friend
+
+        var users_list = [];
+        function User_Credentials(name,profile)
+        {
+            this.id = Math.random().toFixed(6).slice(2);
+            this.name = name;
+            this.profile = profile;
+            this.createdAt = Date.now();
+            this.friends = [];
+        }
+
+        var u1 = new User_Credentials("Asad","abc");
+        var u2 = new User_Credentials("Babar","def");
+        var u3 = new User_Credentials("Carry","ghi");
+        var u4 = new User_Credentials("Danish","jkl");
+
+        users_list.push(u1,u2,u3,u4);
+        console.log(users_list);
+
+        function addFriend(userId, friendId)
+        {
+            for(var i = 0 ; i<users_list.length ; i++)
+            {
+                if(userId == users_list[i].id)
+                {
+                    users_list[i].friends.push(friendId);
+                }
+            }
+        }
+
+        function removeFriend(userId, friendId)
+        {
+            for(var i = 0 ; i<users_list.length ; i++)
+            {
+                if(userId ==  users_list[i].id)
+                {
+                    var friend_index = users_list[i].friends.indexOf(friendId);
+                    users_list.splice(friend_index, 1);
+                }
+            }
+        }
+
+
+        
+
+
+
+    </script>
+
+    
+</body>
+</html>
